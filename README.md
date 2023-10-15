@@ -1,13 +1,13 @@
 # Reinforcement_Learning
 ## Introduction au Reinforcement Learning 
-A. Ressources :
+__A. Ressources :__
 - https://fr.mathworks.com/campaigns/offers/reinforcement-learning-with-matlab-ebook.html?ef_id=Cj0KCQjwm66pBhDQARIsALIR2zDfR5X01OihIwf5cVkUI34p-r6HsQpmJ47rFabBXZ7Dfdb9uaF_KtIaAuaUEALw_wcB:G:s&s_kwcid=AL!8664!3!650602541754!p!!g!!reinforcement%20learning&s_eid=psn_128375755336&q=reinforcement%20learning&gclid=Cj0KCQjwm66pBhDQARIsALIR2zDfR5X01OihIwf5cVkUI34p-r6HsQpmJ47rFabBXZ7Dfdb9uaF_KtIaAuaUEALw_wcB
 
-B. Explications :
-1. https://yout u.be/PKNxUF9CGn8 (16'31)
+__B. Explications :__
+1. https://youtu.be/PKNxUF9CGn8 (16'31)
 - introduction et concept
 
-2. https://youtu.b e/a4WUL_KZeZo (8'35)
+2. https://youtu.be/a4WUL_KZeZo (8'35)
 - ε (epsilon) -> taux d'exploration [0:1]
 - greedy -> taux d'exploitation
 
