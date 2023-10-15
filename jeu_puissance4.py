@@ -33,7 +33,58 @@ class puissance4():
                 self.grid[row][col_index] = player
                 break
 
-        
+    def step(self, player, action):
+        # Vérification des alignements horizontaux
+        for row in range(self.size):
+            for col in range(self.size-4):
+                if (
+                    self.grid[row][col] == player
+                    and self.grid[row][col + 1] == player
+                    and self.grid[row][col + 2] == player
+                    and self.grid[row][col + 3] == 0
+                    and self.grid[row-1][col + 3] in [0, 1, 2]
+                ):
+                    print(f"Joueur {player} a gagné horizontalement.")
+                    return -1
+                
+        # Vérification des alignements verticaux
+        for row in range(self.size-4):
+            for col in range(self.size):
+                if (
+                    self.grid[row][col] == player
+                    and self.grid[row + 1][col] == player
+                    and self.grid[row + 2][col] == player
+                    and self.grid[row + 3][col] == 0
+                ):
+                    print(f"Joueur {player} a gagné verticalement.")
+                    return -1
+                
+        # Vérification des alignements en diagonale (montante)
+        for row in range(self.size-4):
+            for col in range(self.size-4):
+                if (
+                    self.grid[row][col] == player
+                    and self.grid[row + 1][col + 1] == player
+                    and self.grid[row + 2][col + 2] == player
+                    and self.grid[row + 3][col + 3] == 0
+                    and self.grid[row + 2][col + 3] in [1,2]
+                ):
+                    print(f"Joueur {player} a gagné en diagonale (montante).")
+                    return -1
+            # Vérification des alignements en diagonale (descendante)
+        for row in range(self.size-4, self.size):
+            for col in range(self.size-4):
+                if (
+                    self.grid[row][col] == 0
+                    and self.grid[row - 1][col + 1] in [1,2]
+                    and self.grid[row - 1][col + 1] == player
+                    and self.grid[row - 2][col + 2] == player
+                    and self.grid[row - 3][col + 3] == player
+                ):
+                    print(f"Joueur {player} a gagné en diagonale (montante).")
+                    return -1
+        return 0
+                
     def check_win(self, player):
         # Vérification des alignements horizontaux
         for row in range(self.size):
