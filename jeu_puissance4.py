@@ -5,15 +5,16 @@ import numpy as np
 class puissance4:
     def __init__(self, size=7):
         self.size = size
-        self.grid = self.init_grid(size)
+        self.grid = self.init_grid()
         print("La partie à commencée.")
 
-    def init_grid(self, size):
-        grid = [size * [0] for i in range(size)]
+    def init_grid(self):
+        grid = [self.size * [0] for i in range(self.size)]
         return grid
 
     def reset(self):
         self.grid = [self.size * [0] for i in range(self.size)]
+        return self.grid
 
     def prt_grid(self):
         col_names = [" " + str(i) for i in range(self.size)]
@@ -33,13 +34,8 @@ class puissance4:
                 if self.grid[row][col] == 0:
                     self.grid[row][col] = 3 - joueur
                     if self.is_finished():
-                        # Annule le coup pour éviter de modifier la grille
-                        self.grid[row][col] = 0
                         return self.grid, -1
-                    # Annule le coup pour explorer d'autres possibilités
-                    self.grid[row][col] = 0
                     break
-
             return self.grid, 0
 
     def is_finished(self):
@@ -47,8 +43,7 @@ class puissance4:
             # Vérification des alignements horizontaux
             for row in range(self.size):
                 for col in range(self.size - 3):
-                    if self.grid[row][col] == joueur:
-                        if self.grid[row][col+1] == joueur
+                    if all(self.grid[row][col + i] == joueur for i in range(4)):
                         return True
 
             # Vérification des alignements verticaux
@@ -86,7 +81,7 @@ class Player(object):
         self.V = {}
         self.win_nb = 0.0
         self.lose_nb = 0.0
-        self.rewards = []
+        self.v = []
         self.eps = 0.99
         self.trainable = trainable
 
@@ -152,7 +147,6 @@ class Player(object):
                 self.V[s] = 0
             if sp not in self.V:
                 self.V[sp] = 0
-            print(len(self.V))
 
             if r == 0:
                 self.V[s] = self.V[s] + 0.001 * (self.V[sp] - self.V[s])

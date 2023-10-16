@@ -1,6 +1,7 @@
 from jeu_puissance4 import puissance4, Player
 from random import shuffle
 import numpy as np
+import time
 
 
 def play(game, p1, p2, train=True):
@@ -11,12 +12,20 @@ def play(game, p1, p2, train=True):
     while not game.is_finished():
         if players[p % 2].is_human:
             game.prt_grid()
-
         action = players[p % 2].play(state)
         n_state, reward = game.step(p % 2 + 1, action)
 
         #  Game is over. Assign stat
-        if reward != 0:
+        if game.is_finished():
+            p1R = players[p % 2].rewards
+            p2R = players[(p + 1) % 2].rewards
+            print(
+                p1R[len(p1R) - 5 : -1],
+                p2R[len(p2R) - 5 : -1],
+                len(p1R),
+                len(p2R),
+                reward,
+            )
             # Update stat of the current player
             players[p % 2].lose_nb += 1.0 if reward == -1 else 0
             players[p % 2].win_nb += 1.0 if reward == 1 else 0
@@ -39,8 +48,8 @@ def play(game, p1, p2, train=True):
         p2.train()
 
 
-game = puissance4()
-size = 5
+size = 7
+game = puissance4(size=size)
 # PLayers to train
 p1 = Player(is_human=False, size=size, trainable=True)
 p2 = Player(is_human=False, size=size, trainable=True)
@@ -49,6 +58,7 @@ human = Player(is_human=True, size=size, trainable=False)
 random_player = Player(is_human=False, size=size, trainable=False)
 
 print("Train")
+start = time.time()
 # Train the agent
 for i in range(0, 100):
     if i % 10 == 0:
@@ -56,11 +66,9 @@ for i in range(0, 100):
         p2.eps = max(p2.eps * 0.996, 0.05)
     play(game, p1, p2)
 p1.reset_stat()
+print(round(time.time() - start, 2), "s")
 
-print("Display function")
-# Display the value function
-for key in p1.V:
-    print(key, p1.V[key])
+print(len(p1.V), "states")
 print("--------------------------")
 
 print("Play random")
