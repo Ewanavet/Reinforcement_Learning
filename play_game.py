@@ -14,24 +14,20 @@ def play(game, p1, p2, train=True):
             game.prt_grid()
         action = players[p % 2].play(state)
         n_state, reward = game.step(p % 2 + 1, action)
-
+        game.prt_grid()
         #  Game is over. Assign stat
         if game.is_finished():
-            p1R = players[p % 2].rewards
-            p2R = players[(p + 1) % 2].rewards
-            print(
-                p1R[len(p1R) - 5 : -1],
-                p2R[len(p2R) - 5 : -1],
-                len(p1R),
-                len(p2R),
-                reward,
-            )
-            # Update stat of the current player
-            players[p % 2].lose_nb += 1.0 if reward == -1 else 0
-            players[p % 2].win_nb += 1.0 if reward == 1 else 0
-            # Update stat of the other player
-            players[(p + 1) % 2].lose_nb += 1.0 if reward == 1 else 0
-            players[(p + 1) % 2].win_nb += 1.0 if reward == -1 else 0
+            # print(reward, p % 2 + 1)
+            if p % 2 == 0:
+                # Update stat of the current player
+                players[p % 2].win_nb += 1
+                # Update stat of the other player
+                players[(p + 1) % 2].lose_nb += 1
+            else:
+                # Update stat of the current player
+                players[p % 2].lose_nb += 1
+                # Update stat of the other player
+                players[(p + 1) % 2].win_nb += 1
 
         # Add the reversed reward and the new state to the other player
         if p != 0:
@@ -60,7 +56,7 @@ random_player = Player(is_human=False, size=size, trainable=False)
 print("Train")
 start = time.time()
 # Train the agent
-for i in range(0, 100):
+for i in range(0, 1):
     if i % 10 == 0:
         p1.eps = max(p1.eps * 0.996, 0.05)
         p2.eps = max(p2.eps * 0.996, 0.05)

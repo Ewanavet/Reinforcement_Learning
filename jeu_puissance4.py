@@ -29,14 +29,10 @@ class puissance4:
                 self.grid[row][action] = joueur
                 break
 
-        for col in range(self.size):
-            for row in range(self.size - 1, -1, -1):
-                if self.grid[row][col] == 0:
-                    self.grid[row][col] = 3 - joueur
-                    if self.is_finished():
-                        return self.grid, -1
-                    break
-            return self.grid, 0
+        if self.is_finished():
+            return self.grid, 1
+
+        return self.grid, 0
 
     def is_finished(self):
         for joueur in [1, 2]:
@@ -81,6 +77,7 @@ class Player(object):
         self.V = {}
         self.win_nb = 0.0
         self.lose_nb = 0.0
+        self.rewards = []
         self.v = []
         self.eps = 0.99
         self.trainable = trainable
