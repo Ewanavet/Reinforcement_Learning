@@ -21,5 +21,5 @@ __B. Explications :__
 4. https://youtu.be/OKTjheBEvDY?list=RDCMUCVso5UVvQeGAuwbksmA95iA (27'49)
 - Jeu des allumettes python : https://github.com/thibo73800/aihub/blob/master/rl/sticks.py
 
-__C. Jeu du puissance 4__
+__C. Jeu du puissance 4 :__
 il y a deux joueur, 1 et 2. L'un peut être trouvé par l'autre par 3-joueur (3-1 = 2 et 3-2 = 1).
