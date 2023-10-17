@@ -9,7 +9,7 @@ class puissance4:
         print("La partie à commencée.")
 
     def init_grid(self):
-        grid = [self.size * [0] for i in range(self.size)]
+        grid = [[0 for _ in range(self.size)] for _ in range(self.size)]
         return grid
 
     def reset(self):
@@ -17,6 +17,7 @@ class puissance4:
         return self.grid
 
     def prt_grid(self):
+        print(self.grid)
         col_names = [" " + str(i) for i in range(self.size)]
         print(" ".join(col_names))
         for i in range(len(self.grid)):
@@ -31,8 +32,8 @@ class puissance4:
 
         if self.is_finished():
             return self.grid, 1
-
-        return self.grid, 0
+        else:
+            return self.grid, 0
 
     def is_finished(self):
         for joueur in [1, 2]:

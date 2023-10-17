@@ -10,13 +10,16 @@ def play(game, p1, p2, train=True):
     shuffle(players)
     p = 0
     while not game.is_finished():
-        if players[p % 2].is_human:
+        if p2.is_human == True:
             game.prt_grid()
+
         action = players[p % 2].play(state)
         n_state, reward = game.step(p % 2 + 1, action)
-        game.prt_grid()
+        # print("player :", p % 2 + 1, "action :", action)
         #  Game is over. Assign stat
         if game.is_finished():
+            if p2.is_human == True:
+                print("game end")
             # print(reward, p % 2 + 1)
             if p % 2 == 0:
                 # Update stat of the current player
@@ -49,6 +52,7 @@ game = puissance4(size=size)
 # PLayers to train
 p1 = Player(is_human=False, size=size, trainable=True)
 p2 = Player(is_human=False, size=size, trainable=True)
+
 # Human player and random player
 human = Player(is_human=True, size=size, trainable=False)
 random_player = Player(is_human=False, size=size, trainable=False)
@@ -56,7 +60,7 @@ random_player = Player(is_human=False, size=size, trainable=False)
 print("Train")
 start = time.time()
 # Train the agent
-for i in range(0, 1):
+for i in range(0, 1000):
     if i % 10 == 0:
         p1.eps = max(p1.eps * 0.996, 0.05)
         p2.eps = max(p2.eps * 0.996, 0.05)
