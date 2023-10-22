@@ -6,6 +6,7 @@ class puissance4:
     def __init__(self, size=7):
         self.size = size
         self.grid = self.init_grid()
+        self.p_cases = []
         print("La partie à commencée.")
 
     def init_grid(self):
@@ -17,11 +18,20 @@ class puissance4:
         return self.grid
 
     def prt_grid(self):
-        print(self.grid)
         col_names = [" " + str(i) for i in range(self.size)]
         print(" ".join(col_names))
         for i in range(len(self.grid)):
             print(self.grid[i])
+
+    def playable_cases(self):
+        self.p_cases = []
+        for row in range(self.size):
+            for col in range(self.size):
+                if self.grid[row][col] == 0:
+                    # Vérifiez s'il y a un pion en dessous ou si c'est la ligne du bas
+                    if row == self.size - 1 or self.grid[row + 1][col] != 0:
+                        self.p_cases.append((row, col))
+        return self.p_cases
 
     def step(self, joueur, action):
         # Trouvez la première ligne vide dans la colonne[action] et y placer le jeton du joueur
@@ -29,11 +39,18 @@ class puissance4:
             if self.grid[row][action] == 0:
                 self.grid[row][action] = joueur
                 break
-
         if self.is_finished():
-            return self.grid, 1
-        else:
-            return self.grid, 0
+            return self.grid, 1  # le joueur à gagné +1
+
+        for a in self.playable_cases():
+            self.grid[a[0]][a[1]] = 3 - joueur
+            if self.is_finished():
+                self.grid[a[0]][a[1]] = 0
+                return self.grid, -1
+            self.grid[a[0]][a[1]] = 0
+            # la partie n'est pas finie est l'autre joueur peut gagner au prochain coup -1
+
+        return self.grid, 0  # personne n'a ou ne peut gagner, la partie continue 0
 
     def is_finished(self):
         for joueur in [1, 2]:

@@ -21,5 +21,15 @@ __B. Explications :__
 4. https://youtu.be/OKTjheBEvDY?list=RDCMUCVso5UVvQeGAuwbksmA95iA (27'49)
 - Jeu des allumettes python : https://github.com/thibo73800/aihub/blob/master/rl/sticks.py
 
+5. https://youtu.be/a0bVIyIJ074?list=RDCMUCVso5UVvQeGAuwbksmA95iA (34'51)
+- Q-Learning, Q-Function
+- Q(st, at) s:state numéro t et a:action à létat numéro t
+- Q(st, at)π = E[Rt+1 + γRt+2 + γ²Rt+3 + γ³Rt+4 + ... | st,at]
+- γ : compris ]0:1] et plus il est proche de 1 plus les récompenses lointaine on le même poids que les récompenses proches dans le temps, généralement à 0.9 par défault
+- E : est l'éspérance des récompenses que l'on peut éspérer dans létat s et l'instant t actuel (une sorte de moyenne)
+- π : signifie qu'a partir de l'etat et de l'action, l'agent prendra les décisions qu'il considère optimales
+- Q(st, at)π = r + γmax at+1 Q(st+1, at+1)π
+- Q-table, Ubdate
+
 __C. Jeu du puissance 4 :__
 il y a deux joueur, 1 et 2. L'un peut être trouvé par l'autre par 3-joueur (3-1 = 2 et 3-2 = 1).
