@@ -31,5 +31,11 @@ __B. Explications :__
 - Q(st, at)π = r + γmax at+1 Q(st+1, at+1)π
 - Q-table, Ubdate
 
+6. https://www.youtube.com/watch?v=RuraP4ef4nU&list=RDCMUCVso5UVvQeGAuwbksmA95iA&index=5 (9'30)
+
+7. https://youtu.be/U9nkd2jt3b8?list=RDCMUCVso5UVvQeGAuwbksmA95iA (41'50)
+- Deep Q-Learning
+
+
 __C. Jeu du puissance 4 :__
 il y a deux joueur, 1 et 2. L'un peut être trouvé par l'autre par 3-joueur (3-1 = 2 et 3-2 = 1).
