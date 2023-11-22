@@ -27,15 +27,17 @@ __B. Explications :__
 - Q(st, at)π = E[Rt+1 + γRt+2 + γ²Rt+3 + γ³Rt+4 + ... | st,at]
 - γ : compris ]0:1] et plus il est proche de 1 plus les récompenses lointaine on le même poids que les récompenses proches dans le temps, généralement à 0.9 par défault
 - E : est l'éspérance des récompenses que l'on peut éspérer dans létat s et l'instant t actuel (une sorte de moyenne)
-- π : signifie qu'a partir de l'etat et de l'action, l'agent prendra les décisions qu'il considère optimales
+- π : signifie qu'a partir de l'etat et de l'action, l'agent prendra les décisions qu'il considère optimales, (exploitation)
 - Q(st, at)π = r + γmax at+1 Q(st+1, at+1)π
 - Q-table, Ubdate
+- Q[st][a] = Q[st][a] + gamma*(r + Q[st+1][a+11]-Q[st][a])
 
 6. https://www.youtube.com/watch?v=RuraP4ef4nU&list=RDCMUCVso5UVvQeGAuwbksmA95iA&index=5 (9'30)
 
 7. https://youtu.be/U9nkd2jt3b8?list=RDCMUCVso5UVvQeGAuwbksmA95iA (41'50)
 - Deep Q-Learning
-
-
+- Q-table devient trop grande pour des environnements complexes, on utilise des réseaux de nerones
+- 
+ 
 __C. Jeu du puissance 4 :__
 il y a deux joueur, 1 et 2. L'un peut être trouvé par l'autre par 3-joueur (3-1 = 2 et 3-2 = 1).
